@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>루닝서비스ㅣLUNING SERVICE</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='icon.ico') }}">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+	<style>
+		#load {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    display: block;
+    opacity: 0.8;
+    background: rgb(0, 0, 0, 0.5);
+    z-index: 99;
+    text-align: center;
+}
+
+#load > img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 100;
+}
+
+body{
+    background-color: #dee9ff;
+}
+
+.registration-form{
+	padding: 50px 0;
+}
+
+.registration-form form{
+    background-color: #fff;
+    max-width: 600px;
+    margin: auto;
+    padding: 50px 70px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+}
+
+.registration-form .form-icon{
+	text-align: center;
+    background-color: #5891ff;
+    border-radius: 50%;
+    font-size: 40px;
+    color: white;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    margin-bottom: 50px;
+    line-height: 100px;
+}
+
+.registration-form .item{
+	border-radius: 20px;
+    margin-bottom: 25px;
+    padding: 10px 20px;
+}
+.h1_def{
+    font-weight: 100;
+    border: none;
+    font-size:30px;
+    color: rgb(22, 22, 22);
+    text-align: center;
+}
+.registration-form .create-account{
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #5791ff;
+    border: none;
+    color: white;
+    margin-top: 20px;
+}
+
+.registration-form .social-media{
+    max-width: 600px;
+    background-color: #fff;
+    margin: auto;
+    padding: 35px 0;
+    text-align: center;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    color: #9fadca;
+    border-top: 1px solid #dee9ff;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+}
+
+
+.registration-form .social-icons a{
+    font-size: 23px;
+    margin: 0 3px;
+    color: #5691ff;
+    width: 45px;
+    display: inline-block;
+    height: 45px;
+    text-align: center;
+    background-color: #fff;
+    line-height: 45px;
+}
+
+.registration-form .social-icons a:hover{
+    text-decoration: none;
+    opacity: 0.6;
+}
+
+@media (max-width: 576px) {
+    .registration-form form{
+        padding: 50px 20px;
+    }
+
+    .registration-form .form-icon{
+        width: 70px;
+        height: 70px;
+        font-size: 30px;
+        line-height: 70px;
+    }
+}
+	</style>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+<body>
+    <div class="registration-form">
+        <form>
+            <h5 class="h1_def">레어티켓 수정</h5>
+            <div class="form-group">
+                <input type="text" class="form-control item"  id="txt3" placeholder="게임버전">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control item" id="txt1" placeholder="이어하기코드">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control item"  id="txt2" placeholder="인증번호">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control item" id="txt4" placeholder="수정할 레어티켓 갯수">
+            </div>
+            <div class="form-group">
+                <button type="button" id="btn1" class="btn btn-block create-account">EDIT</button>
+            </div>
+        </form>
+        <div class="social-media">
+            <div class="social-icons" style="color: #000 !important;">
+                <a href="/myaccount"><i class="bi bi-person-circle" title="내 계정정보"></i></a>
+                <a href="/edit"><i class="bi bi-wrench-adjustable" title="에딧 대시보드"></i></a>
+                <a href="/history"><i class="bi bi-clock-history" title="히스토리"></i></a>
+                <a href="/contact"><i class="bi bi-chat-left-text" title="문의하기"></i></a>
+                <a href="/help"><i class="bi bi-question-circle" title="사용 도움말"></i></a>
+                <a href="/logout"><i class="bi bi-box-arrow-left" title="로그아웃"></i></a>
+            </div>
+        </div>
+    </div>
+	<div id="load">
+		<img src="{{ url_for('static', filename='load.gif') }}" alt="loading">
+	</div>
+
+
+</p>
+
+<script>
+$(window).on('load', function() {
+    $('#load').hide();
+});
+
+$( "#btn1" ).click(function() {
+	var postdata = {
+		'num1':$('#txt1').val(),
+		'num2':$('#txt2').val(),
+		'num3':$('#txt3').val(),
+		'num4':$('#txt4').val(),
+	}
+	$('#load').show();
+	<!--alert( "Handler for .click() called." );-->
+	$.ajax({
+		type: 'POST',
+		url: '{{url_for("ticket2")}}',
+		data: JSON.stringify(postdata),
+		dataType : 'JSON',
+		contentType: "application/json",
+		success: function(data){
+			$('#load').hide();
+			if (data['result'] == true){
+				location.href='/history'
+			}
+			else{
+				alert("오류가 발생했습니다. 사유 : " + data['info'])
+			}
+		},
+		error: function(request, status, error){
+			alert("알 수 없는 오류 발생")
+		}
+	})
+});
+
+</script>
+ 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+</body>
+</html>

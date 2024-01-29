@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>루닝서비스ㅣLUNING SERVICE</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='icon.ico') }}">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+</head>
+<body>
+    <h1>라이센스 코인 충전</h1>
+
+        <form method="POST" action="/coin_edit">
+            <input type="text"name="license_1" placeholder="라이센스"><br>
+            <input type="text"name="coin_value_1" placeholder="충전할 코인"><br>
+            <button type="submit" id="submit">EDIT</button>
+            <hr>
+        </form>
+        <h1>라이센스 제거</h1>
+        <form method="POST" action="/license_del">
+            <input type="text"name="license_2" placeholder="제거할 라이센스"><br>
+            <button type="submit" id="submit">DEL</button>
+            <hr>
+        </form>
+        <h1>라이센스 생성</h1>
+        <form method="POST" action="/license_create">
+            <input type="text"name="license_3" placeholder="라이센스 갯수"><br>
+            <input type="text"name="coin_value_3" placeholder="보유 코인"><br>
+            <button type="submit" id="submit">CREATE</button>
+            <hr>
+        </form>
+        <a href="{{ url_for('downloaddb') }}">DB 다운로드</a>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+</body>
+</html>
