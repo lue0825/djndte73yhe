@@ -2,3 +2,4 @@ flask[async]
 requests
 aiohttp
 httpx
+pytz
