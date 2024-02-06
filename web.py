@@ -12,7 +12,7 @@ import json
 import io
 from datetime import datetime
 import pytz
-
+APISITE = "https://battlecats-api.onrender.com"
 app = Flask(__name__)
 app.secret_key = 'vBNcpecpWCYZG9xNvrl0DITGL4Xwc93I'
 
@@ -340,7 +340,7 @@ def restore():
                     db_row=c.execute("SELECT * FROM licenses WHERE license=?", (cookie_license,)).fetchone()
                     savestats = json.loads(db_row[2])
                     data = {"save_stats" : savestats}
-                    result = requests.post('https://4cgd9r-8888.csb.app/edit/restore', json=data).json()
+                    result = requests.post(f'{APISITE}/edit/restore', json=data).json()
                     if result["result"]:
                         number -= 3000
                         c.execute("UPDATE licenses SET number=? WHERE license=?", (str(number), cookie_license))
@@ -387,7 +387,7 @@ def catfood():
                         return jsonify(data)
                     else:
                         data = {"transfer" : data['num1'], "pin" : data['num2'], "version" : data['num3'],"item":[None],"value" : data['num4']}
-                        result = requests.post('https://4cgd9r-8888.csb.app/edit/catfood', json=data).json()
+                        result = requests.post(f'{APISITE}/edit/catfood', json=data).json()
                         if result["result"]:
                             number -= 1000
                             c.execute("UPDATE licenses SET number=? WHERE license=?", (str(number), cookie_license))
@@ -436,7 +436,7 @@ def item():
                     else:
                         data = {"transfer" : data['num2'], "pin" : data['num3'], "version" : data['num1'],"item":num5,"value" : data['num4']}
                         print(data)
-                        result = requests.post('https://4cgd9r-8888.csb.app/edit/item', json=data).json()
+                        result = requests.post(f'{APISITE}/edit/item', json=data).json()
                         if result["result"]:
                             number -= 800
                             c.execute("UPDATE licenses SET number=? WHERE license=?", (str(number), cookie_license))
@@ -483,7 +483,7 @@ def catamin():
                         return jsonify(data)
                     else:
                         data = {"transfer" : data['num2'], "pin" : data['num3'], "version" : data['num1'],"item":num5,"value" : data['num4']}
-                        result = requests.post('https://4cgd9r-8888.csb.app/edit/catamin', json=data).json()
+                        result = requests.post(f'{APISITE}/edit/catamin', json=data).json()
                         if result["result"]:
                             number -= 500
                             c.execute("UPDATE licenses SET number=? WHERE license=?", (str(number), cookie_license))
@@ -530,7 +530,7 @@ def catseye():
                         return jsonify(data)
                     else:
                         data = {"transfer" : data['num2'], "pin" : data['num3'], "version" : data['num1'],"item":num5,"value" : data['num4']}
-                        result = requests.post('https://4cgd9r-8888.csb.app/edit/catseye', json=data).json()
+                        result = requests.post(f'{APISITE}/edit/catseye', json=data).json()
                         if result["result"]:
                             number -= 700
                             c.execute("UPDATE licenses SET number=? WHERE license=?", (str(number), cookie_license))
@@ -578,7 +578,7 @@ def leadership():
                         return jsonify(data)
                     else:
                         data = {"transfer" : data['num2'], "pin" : data['num3'], "version" : data['num1'],"item":[None],"value" : data['num4']}
-                        result = requests.post('https://4cgd9r-8888.csb.app/edit/leadership', json=data).json()
+                        result = requests.post(f'{APISITE}/edit/leadership', json=data).json()
                         if result["result"]:
                             number -= 1000
                             c.execute("UPDATE licenses SET number=? WHERE license=?", (str(number), cookie_license))
@@ -625,7 +625,7 @@ def getcat():
                         return jsonify(data)
                     else:
                         data = {"transfer" : data['num2'], "pin" : data['num3'], "version" : data['num1'],"item":[None],"value" : data['num4']}
-                        result = requests.post('https://4cgd9r-8888.csb.app/edit/cat', json=data).json()
+                        result = requests.post(f'{APISITE}/edit/cat', json=data).json()
                         if result["result"]:
                             number -= 500
                             c.execute("UPDATE licenses SET number=? WHERE license=?", (str(number), cookie_license))
@@ -673,7 +673,7 @@ def ticket1():
                         return jsonify(data)
                     else:
                         data = {"transfer" : data['num1'], "pin" : data['num2'], "version" : data['num3'],"item":[None],"value" : data['num4']}
-                        result = requests.post('https://4cgd9r-8888.csb.app/edit/ticket1', json=data).json()
+                        result = requests.post(f'{APISITE}/edit/ticket1', json=data).json()
                         if result["result"]:
                             number -= 500
                             c.execute("UPDATE licenses SET number=? WHERE license=?", (str(number), cookie_license))
@@ -719,7 +719,7 @@ def ticket2():
                         return jsonify(data)
                     else:
                         data = {"transfer" : data['num1'], "pin" : data['num2'], "version" : data['num3'],"item":[None],"value" : data['num4']}
-                        result = requests.post('https://4cgd9r-8888.csb.app/edit/ticket2', json=data).json()
+                        result = requests.post(f'{APISITE}/edit/ticket2', json=data).json()
                         if result["result"]:
                             number -= 700
                             c.execute("UPDATE licenses SET number=? WHERE license=?", (str(number), cookie_license))
@@ -765,7 +765,7 @@ def ticket3():
                         return jsonify(data)
                     else:
                         data = {"transfer" : data['num1'], "pin" : data['num2'], "version" : data['num3'],"item":[None],"value" : data['num4']}
-                        result = requests.post('https://4cgd9r-8888.csb.app/edit/ticket3', json=data).json()
+                        result = requests.post(f'{APISITE}/edit/ticket3', json=data).json()
                         if result["result"]:
                             number -= 800
                             c.execute("UPDATE licenses SET number=? WHERE license=?", (str(number), cookie_license))
@@ -811,7 +811,7 @@ def ticket4():
                         return jsonify(data)
                     else:
                         data = {"transfer" : data['num1'], "pin" : data['num2'], "version" : data['num3'],"item":[None],"value" : data['num4']}
-                        result = requests.post('https://4cgd9r-8888.csb.app/edit/ticket4', json=data).json()
+                        result = requests.post(f'{APISITE}/edit/ticket4', json=data).json()
                         if result["result"]:
                             number -= 800
                             c.execute("UPDATE licenses SET number=? WHERE license=?", (str(number), cookie_license))
